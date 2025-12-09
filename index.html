@@ -1,25 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Redirecting…</title>
+<head>
+<meta charset="UTF-8">
+<title>Redirecting…</title>
+<script>
+  (function() {
+    const host = window.location.hostname;
 
-    <!-- Fallback for users with JS disabled -->
-    <meta http-equiv="refresh" content="0;url=https://www.algebra.rest" />
-
-    <script>
-      // Redirect to www.algebra.rest and keep path, query, and hash
-      (function () {
-        var target = "https://www.algebra.rest" +
-          window.location.pathname +
-          window.location.search +
-          window.location.hash;
-
-        window.location.replace(target);
-      })();
-    </script>
-  </head>
-  <body>
-    <p>Redirecting to <a href="https://www.algebra.rest">https://www.algebra.rest</a>…</p>
-  </body>
+    // If hostname starts with "www.", redirect to non-www
+    if (host.startsWith("www.")) {
+      const newHost = host.replace(/^www\./, "");
+      const newUrl = window.location.protocol + "//" + newHost + window.location.pathname + window.location.search + window.location.hash;
+      window.location.replace(newUrl);
+    }
+  })();
+</script>
+</head>
+<body>
+Redirecting…
+</body>
 </html>
